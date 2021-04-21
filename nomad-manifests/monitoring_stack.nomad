@@ -44,9 +44,6 @@ job "monitoring" {
       port "prometheus" {
         to = 9090
       }
-      port "mqtt2prom" {
-        to = 9641
-      }
       port "speedtest2prom" {
         to = 9516
       }
@@ -177,38 +174,6 @@ job "monitoring" {
         port = "prometheus"
         check {
           name     = "prometheus HTTPS"
-          type     = "tcp"
-          interval = "10s"
-          timeout  = "2s"
-        }
-      }
-    }
-    task "mqtt2prometheus" {
-      driver = "docker"
-      config {
-        dns_servers = ["<SERVER_IP>"]
-        image = "ghcr.io/hikhvar/mqtt2prometheus:latest"
-        network_mode = "bridge"
-        volumes = [
-            "/media/mqtt2prom/data:/mqtt2prom:Z",
-            "/media/mqtt2prom/config/config.yaml:/config.yaml:Z",
-            "/etc/localtime:/etc/localtime:ro"
-        ]
-        ports = ["mqtt2prom"]
-      }
-      resources {
-        cpu    = 500 # 500 MHz
-        memory = 512 # 512M
-      }
-      service {
-        name = "mqtt2prom"
-        tags = [
-            "prometheus",
-            "mqtt"
-        ]
-        port = "mqtt2prom"
-        check {
-          name     = "MQTT Exporter for Prometheus"
           type     = "tcp"
           interval = "10s"
           timeout  = "2s"
