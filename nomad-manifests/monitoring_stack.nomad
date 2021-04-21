@@ -44,9 +44,6 @@ job "monitoring" {
       port "prometheus" {
         to = 9090
       }
-      port "speedtest2prom" {
-        to = 9516
-      }
     }
     task "unifiPoller" {
       driver = "docker"
@@ -174,35 +171,6 @@ job "monitoring" {
         port = "prometheus"
         check {
           name     = "prometheus HTTPS"
-          type     = "tcp"
-          interval = "10s"
-          timeout  = "2s"
-        }
-      }
-    }
-    task "speedtest2prometheus" {
-      driver = "docker"
-      config {
-        dns_servers = ["<SERVER_IP>"]
-        image = "jraviles/prometheus_speedtest:latest"
-        network_mode = "bridge"
-        volumes = [
-            "/etc/localtime:/etc/localtime:ro"
-        ]
-        ports = ["speedtest2prom"]
-      }
-      resources {
-        cpu    = 500 # 500 MHz
-        memory = 512 # 512M
-      }
-      service {
-        name = "speedtest2prom"
-        tags = [
-            "speedtest"
-        ]
-        port = "speedtest2prom"
-        check {
-          name     = "Speedtest exporter for Prometheus"
           type     = "tcp"
           interval = "10s"
           timeout  = "2s"
