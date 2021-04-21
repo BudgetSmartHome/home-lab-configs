@@ -1,0 +1,11 @@
+[Unit]
+Description=PiHole Prometheus Exporter
+Wants=network.target
+Before=network.target
+
+[Service]
+ExecStart=/usr/local/bin/start_phe.sh
+
+[Install]
+WantedBy=multi-user.target
+
