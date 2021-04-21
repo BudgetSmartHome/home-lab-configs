@@ -1,0 +1,62 @@
+{
+    "acl_default_policy": "allow",
+    "addresses": {
+        "dns": "<SERVER_IP>",
+        "grpc": "<SERVER_IP>",
+        "http": "<SERVER_IP>",
+        "https": "<SERVER_IP>"
+    },
+    "advertise_addr": "<SERVER_IP>",
+    "advertise_addr_wan": "<SERVER_IP>",
+    "bind_addr": "<SERVER_IP>",
+    "bootstrap": false,
+    "client_addr": "127.0.0.1",
+    "connect": {
+      "enabled": true
+    },
+    "data_dir": "/var/consul",
+    "datacenter": "<DATACENTRE_NAME>",
+    "disable_update_check": false,
+    "domain": "<LOCAL_DOMAIN>",
+    "enable_script_checks": false,
+    "enable_syslog": true,
+    "encrypt": "<OUTPUT_OF_CONSUL_ENCRYPT>",
+    "encrypt_verify_incoming": true,
+    "encrypt_verify_outgoing": true,
+    "log_level": "INFO",
+    "node_name": "<SERVER_HOSTNAME>",
+    "performance": {
+        "leave_drain_time": "5s",
+        "raft_multiplier": 1,
+        "rpc_hold_timeout": "7s"
+    },
+    "ports": {
+        "dns": 8600,
+        "grpc": -1,
+        "http": 8500,
+        "https": -1,
+        "serf_lan": 8301,
+        "serf_wan": 8302,
+        "server": 8300
+    },
+    "raft_protocol": 3,
+    "retry_interval": "30s",
+    "recursors": [
+        "208.67.220.220",
+        "208.67.222.222"
+    ],
+    "retry_interval_wan": "30s",
+    "retry_join": [
+        "<SERVER_IP>"
+    ],
+    "retry_max": 0,
+    "retry_max_wan": 0,
+    "server": true,
+    "syslog_facility": "local0",
+    "ui": true,
+    "acl": {
+      "enabled": true,
+      "default_policy": "allow",
+      "enable_token_persistence": true
+    }
+}
