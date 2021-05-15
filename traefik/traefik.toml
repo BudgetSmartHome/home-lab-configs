@@ -1,0 +1,24 @@
+[entrypoints]
+  [entrypoints.http]
+    address = ":80"
+
+[providers]
+  [providers.consulCatalog]
+    prefix = "traefik"
+    requireConsistent = true     # Also tried with False here, no difference
+    exposedByDefault = true
+    defaultRule = "Host(`{{ .Name }}.service.your.domain`)"
+    [providers.consulCatalog.endpoint]
+      address = "http://<SERVER_IP>:8500"
+      scheme = "http"
+
+[api]
+  dashboard = true
+  insecure = true
+  debug = true
+
+[metrics]
+  [metrics.prometheus]
+
+[log]
+  level = "INFO"
